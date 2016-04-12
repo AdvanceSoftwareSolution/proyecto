@@ -10,7 +10,7 @@ import javax.mail.*;
 
 import javax.mail.internet.*;
 
-public class EjemploEnviarCorreoNombre {
+public class EnviarCorreoNombre {
 
 	
 		public static void main(String []args) throws UnsupportedEncodingException{

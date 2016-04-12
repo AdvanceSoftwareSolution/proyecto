@@ -9,7 +9,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 
-public class EjemploEnviarCorreo {
+public class EnviarCorreo {
 
 	public static void main(String[] args) {
 		
