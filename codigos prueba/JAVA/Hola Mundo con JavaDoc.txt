@@ -1,0 +1,37 @@
+package holamundo;
+/**
+ * Esta clase ejecuta el ejemplo de Hola mundo 
+ * Y se implementa los comentarios con JavaDoc
+ * 
+ * @author Juan Carlos Perez
+ * @version 26/04/2016
+ */
+
+public class Main {
+
+	/**
+	 * Método mostrarMensaje se encarga de 
+	 * recibir por parametro una cadena de texto
+	 * y de mostrarla por pantalla.
+	 * 
+	 * @param mensj
+	 */
+	public void mostrarMensaje(String mensj){
+		
+		System.out.println(mensj);
+	}// Cierre del método mostrarMensaje
+	
+	
+	/**
+	 * Esta es la clase Main o principal del Programa.
+	 * 
+	 */
+	public static void main(String[] args) {
+		
+		Main mensaje = new Main();
+		
+		mensaje.mostrarMensaje("Hola Mundo Java");
+		
+	}// Cierre del metodo
+
+}// Cierre de la clase y del ejemplo Hola mundo
