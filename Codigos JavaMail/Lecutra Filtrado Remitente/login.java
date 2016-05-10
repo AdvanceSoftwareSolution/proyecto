@@ -5,6 +5,7 @@
  */
 package proyectois;
 
+import java.awt.Image;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -13,6 +14,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -117,20 +122,21 @@ public class login extends javax.swing.JFrame {
         Login.setLayout(LoginLayout);
         LoginLayout.setHorizontalGroup(
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EtEmail)
-                    .addComponent(EtConstrasena))
-                .addGap(68, 68, 68)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CampoCorreo)
-                    .addComponent(CampoContrasena))
-                .addGap(34, 34, 34))
             .addGroup(LoginLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(BotonLogin)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
+                        .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EtConstrasena, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(32, 32, 32)
+                        .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CampoContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(CampoCorreo))
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
+                        .addComponent(BotonLogin)
+                        .addGap(114, 114, 114))))
         );
         LoginLayout.setVerticalGroup(
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,16 +149,16 @@ public class login extends javax.swing.JFrame {
                 .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtConstrasena)
                     .addComponent(CampoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(BotonLogin)
-                .addGap(27, 27, 27))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +242,7 @@ public class login extends javax.swing.JFrame {
                
                  LecturaCorreo ejecutaraccion =new LecturaCorreo();
                 ejecutaraccion.obtenerDatos(usuarioEmisor, claveEmisor);
-                ejecutaraccion.setVisible(true);
+                ejecutaraccion.VentanaPrincipal();
               
                 System.out.println(usuarioEmisor);
                 
@@ -246,7 +252,13 @@ public class login extends javax.swing.JFrame {
               this.setVisible(false);
 	               
     }//GEN-LAST:event_BotonLoginActionPerformed
-
+     public void ImageAndLabels( ) {
+          JFrame frame = new JFrame("image and labels");
+          
+            setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+            add( new JLabel( new ImageIcon("./ico.png ")));
+           
+        }
     /**
      * @param args the command line arguments
      */
@@ -277,12 +289,20 @@ public class login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
-                
+               
+                new login().VentanaPrincipal();
             }
         });
     }
-
+        public void VentanaPrincipal(){
+       ;
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("images/ico.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
+        
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
    
 
     public JPasswordField getCampoContrasena() {

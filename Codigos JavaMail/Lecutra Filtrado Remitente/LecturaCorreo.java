@@ -6,6 +6,7 @@
 package proyectois;
 
 
+import java.awt.Image;
 import java.util.Properties;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -14,6 +15,8 @@ import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
 import javax.mail.search.FromTerm;
 import javax.mail.search.SearchTerm;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableColumnModel;
@@ -98,7 +101,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
         SearchTerm sender = new FromTerm(new InternetAddress(usuarioRemitente));
         Message[] mensajes = inbox.search(sender); 
         
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 15; i++)
             {
                
                 //inboxok+=mensajes[i].getFrom()[0].toString();
@@ -121,7 +124,15 @@ public class LecturaCorreo extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+        public void VentanaPrincipal(){
+       
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("images/ico.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
+        
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
      public void obtenerDatos(String emisor, String contrasena){
 		usuarioEmisor=emisor;
                 claveEmisor=contrasena;
@@ -263,8 +274,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturaCorreo().setVisible(true);
-                
+               new login().VentanaPrincipal();
             }
         });
     }
