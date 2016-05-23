@@ -9,6 +9,7 @@ package proyectois;
 import java.awt.Image;
 import java.util.Calendar;
 import java.util.Properties;
+import javax.mail.Address;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -100,6 +101,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
     
     public void mostrarInbox(Folder inbox,Store store){
         String inboxok = "";
+        String temporal ="";
         usuarioRemitente= CampoRemitente.getText();
         try{
         //Message[] mensajes = folder.getMessages();
@@ -118,7 +120,11 @@ public class LecturaCorreo extends javax.swing.JFrame {
         // System.out.println(" universidad "+inbox.getFolder("CIRCLES"));
         Message[] mensajes = inbox.search(new SubjectTerm(usuarioRemitente));
      //  Message[] mensajes = inbox.search(sender); 
-        
+        String integrante1="luchoguer@gmail.com";
+        int contadorintegrante1=0;
+        String integrante2="hidefimci@gmail.com";
+        int contadorintegrante2=0;
+  
                 for (int i = 0; i < mensajes.length; i++)
             {
                
@@ -128,15 +134,46 @@ public class LecturaCorreo extends javax.swing.JFrame {
                inboxok+=mensajes[i].getFrom()[0].toString();
                // inboxok+="      \n";
                 inboxok+="      \t";
+                
+                
+                Address[] froms = mensajes[i].getFrom();
+                String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
+                temporal=email;
+                
+                
+                //System.out.println("temporal "+ temporal);
+                if(integrante1.equals(temporal) ){
+                 contadorintegrante1++;
+                   
+                 System.out.println("contador1: "+contadorintegrante1);
+                    
+                } else{ 
+                    if(integrante2.equals(temporal)){
+                 contadorintegrante2++;
+                 System.out.println("contador2: "+contadorintegrante2);
+                }
+                
+                }
+                temporal=null;
+                //temporal=null;
+                
+                
                // inboxok+=mensajes[i].getSubject();
                 
                 inboxok+="\n";
                 System.out.println(i+" "+inboxok);
-                CampoImpresion.setText(inboxok);
+                
                 
                          
              
             }
+                inboxok+="\n\n";
+                inboxok+="Mensajes total del Integrante Luis Miguel:";
+                inboxok+="      \t"+contadorintegrante1+" Mensajes\n";
+                inboxok+="Mensajes total del Integrante Hi Defi:";
+                inboxok+="      \t"+contadorintegrante2+" Mensajes\n";
+                
+                CampoImpresion.setText(inboxok);
                 
                
               
