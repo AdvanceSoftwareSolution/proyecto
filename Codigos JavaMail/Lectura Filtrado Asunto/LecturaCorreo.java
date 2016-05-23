@@ -58,6 +58,8 @@ public class LecturaCorreo extends javax.swing.JFrame {
         
         String usuarioRemitente;
         
+         int contadorintegrante1=0;
+        int contadorintegrante2=0;
         
     public LecturaCorreo() {
         initComponents();
@@ -121,9 +123,9 @@ public class LecturaCorreo extends javax.swing.JFrame {
         Message[] mensajes = inbox.search(new SubjectTerm(usuarioRemitente));
      //  Message[] mensajes = inbox.search(sender); 
         String integrante1="luchoguer@gmail.com";
-        int contadorintegrante1=0;
+       
         String integrante2="hidefimci@gmail.com";
-        int contadorintegrante2=0;
+        
   
                 for (int i = 0; i < mensajes.length; i++)
             {
@@ -185,15 +187,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-        public void VentanaPrincipal(){
        
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("images/ico.png"));
-        Image Image = ImageIcon.getImage();
-        this.setIconImage(Image);
-        
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-    }
      public void obtenerDatos(String emisor, String contrasena){
 		usuarioEmisor=emisor;
                 claveEmisor=contrasena;
@@ -217,6 +211,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         CampoRemitente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        obtenerGrafico = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inbox");
@@ -239,6 +234,13 @@ public class LecturaCorreo extends javax.swing.JFrame {
 
         jLabel3.setText("Asunto a Buscar");
 
+        obtenerGrafico.setText("Obtener Grafico");
+        obtenerGrafico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                obtenerGraficoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -260,8 +262,13 @@ public class LecturaCorreo extends javax.swing.JFrame {
                 .addComponent(CampoRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(256, 256, 256)
-                .addComponent(BotonLeer)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(BotonLeer))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(obtenerGrafico)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -279,7 +286,9 @@ public class LecturaCorreo extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(obtenerGrafico)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,10 +299,9 @@ public class LecturaCorreo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -305,6 +313,25 @@ public class LecturaCorreo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BotonLeerActionPerformed
 
+    private void obtenerGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obtenerGraficoActionPerformed
+       
+         VisualGrafica ejecutaraccion =new VisualGrafica();
+                ejecutaraccion.obtenerDatos(contadorintegrante1,contadorintegrante2);
+                ejecutaraccion.VentanaPrincipal();
+                 this.setVisible(false);
+              
+   // TODO add your handling code here:
+    }//GEN-LAST:event_obtenerGraficoActionPerformed
+
+    public void VentanaPrincipal(){
+       
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("images/ico.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
+        
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
@@ -358,5 +385,6 @@ public class LecturaCorreo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton obtenerGrafico;
     // End of variables declaration//GEN-END:variables
 }
