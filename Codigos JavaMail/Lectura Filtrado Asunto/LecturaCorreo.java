@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectois;
+package proyectoingsoft;
 
 
 import java.awt.Image;
-import java.util.Calendar;
 import java.util.Properties;
 import javax.mail.Address;
 import javax.mail.Folder;
@@ -15,19 +14,10 @@ import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
-import javax.mail.search.ComparisonTerm;
-import javax.mail.search.FromTerm;
-import javax.mail.search.OrTerm;
-import javax.mail.search.ReceivedDateTerm;
-import javax.mail.search.SearchTerm;
 import javax.mail.search.SubjectTerm;
-import javax.security.auth.Subject;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableColumnModel;
-import javax.swing.table.TableColumnModel;
 
 
 /**
@@ -56,7 +46,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
 	 *  el correo electronico de usuario receptor.
 	 */
         
-        String usuarioRemitente;
+        String asuntoBusqueda;
         
          int contadorintegrante1=0;
         int contadorintegrante2=0;
@@ -86,8 +76,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
           
             Store store = sesion.getStore("pop3");
             store.connect("pop.gmail.com", usuarioEmisor, claveEmisor);
-            //Folder folder = store.getFolder("INBOX");
-            //folder.open(Folder.READ_ONLY);
+           
                 Folder inbox = store.getFolder("INBOX");
             inbox.open(Folder.READ_ONLY);
             mostrarInbox(inbox,store);
@@ -104,24 +93,11 @@ public class LecturaCorreo extends javax.swing.JFrame {
     public void mostrarInbox(Folder inbox,Store store){
         String inboxok = "";
         String temporal ="";
-        usuarioRemitente= CampoRemitente.getText();
+        asuntoBusqueda= CampoRemitente.getText();
         try{
-        //Message[] mensajes = folder.getMessages();
-        //TableColumnModel columnModel = new DefaultTableColumnModel();
-       // InternetAddress [] direcciones ={ new InternetAddress("luchoguer@gmail.com"),
-        //new InternetAddress("luchoguerr@gmail.com")};
         
-//     SearchTerm sender = new FromTerm(new InternetAddress(usuarioRemitente));
-      
-      //  SearchTerm sender = new OrTerm(new InternetAddress(usuarioRemitente), "holafinal");  
-       // SearchTerm sender = new SubjectTerm ("holafinal");
-        
-      // Calendar cal = Calendar.getInstance();
-    //cal.roll(Calendar.MONTH, false);
-    //Message[] mensajes = inbox.search(new ReceivedDateTerm(ComparisonTerm.GT, cal.getTime()));
-        // System.out.println(" universidad "+inbox.getFolder("CIRCLES"));
-        Message[] mensajes = inbox.search(new SubjectTerm(usuarioRemitente));
-     //  Message[] mensajes = inbox.search(sender); 
+        Message[] mensajes = inbox.search(new SubjectTerm(asuntoBusqueda));
+    
         String integrante1="luchoguer@gmail.com";
        
         String integrante2="hidefimci@gmail.com";
@@ -134,7 +110,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
                 inboxok+="      \t";
                
                inboxok+=mensajes[i].getFrom()[0].toString();
-               // inboxok+="      \n";
+             
                 inboxok+="      \t";
                 
                 
@@ -143,7 +119,6 @@ public class LecturaCorreo extends javax.swing.JFrame {
                 temporal=email;
                 
                 
-                //System.out.println("temporal "+ temporal);
                 if(integrante1.equals(temporal) ){
                  contadorintegrante1++;
                    
@@ -157,10 +132,6 @@ public class LecturaCorreo extends javax.swing.JFrame {
                 
                 }
                 temporal=null;
-                //temporal=null;
-                
-                
-               // inboxok+=mensajes[i].getSubject();
                 
                 inboxok+="\n";
                 System.out.println(i+" "+inboxok);
@@ -357,6 +328,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LecturaCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

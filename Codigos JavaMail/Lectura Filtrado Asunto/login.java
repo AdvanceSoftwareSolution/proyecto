@@ -3,23 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectois;
+package proyectoingsoft;
 
 import java.awt.Image;
 import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -39,9 +33,7 @@ public class login extends javax.swing.JFrame {
 	 */
 	String claveEmisor;
 	
-	/** usuarioReceptor obtiene y contiene 
-	 *  el correo electronico de usuario receptor.
-	 */
+	
 	
 	
     /**
@@ -188,22 +180,9 @@ public class login extends javax.swing.JFrame {
 		
 	}// Cierre del Método
 
-    public String getUsuarioEmisor() {
-        return usuarioEmisor;
-    }
-
-    public void setUsuarioEmisor(String usuarioEmisor) {
-        this.usuarioEmisor = usuarioEmisor;
-    }
-
-    public String getClaveEmisor() {
-        return claveEmisor;
-    }
-
-    public void setClaveEmisor(String claveEmisor) {
-        this.claveEmisor = claveEmisor;
-    }
         
+  
+
         /**
 	 * Método ValidarSesion se encarga de validar y autenticar mediante 
 	 * el protocolo smtp el correo y la clave del usuario emisor para
@@ -285,6 +264,7 @@ public class login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -295,7 +275,7 @@ public class login extends javax.swing.JFrame {
         });
     }
         public void VentanaPrincipal(){
-       ;
+       
         ImageIcon ImageIcon = new ImageIcon(getClass().getResource("images/ico.png"));
         Image Image = ImageIcon.getImage();
         this.setIconImage(Image);
