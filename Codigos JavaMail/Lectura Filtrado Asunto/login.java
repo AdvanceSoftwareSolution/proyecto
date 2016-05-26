@@ -6,11 +6,14 @@
 package proyectoingsoft;
 
 import java.awt.Image;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -32,9 +35,9 @@ public class login extends javax.swing.JFrame {
 	 *  la clave del correo electronico del usuario emisor.
 	 */
 	String claveEmisor;
+	 String idioma;
 	
-	
-	
+	ResourceBundle fuente;
 	
     /**
      * Creates new form login
@@ -56,11 +59,13 @@ public class login extends javax.swing.JFrame {
         jFrame2 = new javax.swing.JFrame();
         jFrame4 = new javax.swing.JFrame();
         Login = new javax.swing.JPanel();
-        EtEmail = new javax.swing.JLabel();
-        EtConstrasena = new javax.swing.JLabel();
+        EtCorreo = new javax.swing.JLabel();
+        EtContrasena = new javax.swing.JLabel();
         CampoContrasena = new javax.swing.JPasswordField();
         CampoCorreo = new javax.swing.JTextField();
-        BotonLogin = new javax.swing.JButton();
+        BotonIniciar = new javax.swing.JButton();
+        opcionIdioma = new javax.swing.JComboBox<>();
+        EtIdioma = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -99,16 +104,25 @@ public class login extends javax.swing.JFrame {
         setTitle("Iniciar Sesión");
         setResizable(false);
 
-        EtEmail.setText("Email");
+        EtCorreo.setText("Correo");
 
-        EtConstrasena.setText("Password");
+        EtContrasena.setText("Contraseña");
 
-        BotonLogin.setText("Login");
-        BotonLogin.addActionListener(new java.awt.event.ActionListener() {
+        BotonIniciar.setText("Iniciar Sesion");
+        BotonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonLoginActionPerformed(evt);
+                BotonIniciarActionPerformed(evt);
             }
         });
+
+        opcionIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "Ingles", "Frances", " " }));
+        opcionIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionIdiomaActionPerformed(evt);
+            }
+        });
+
+        EtIdioma.setText("Idioma");
 
         javax.swing.GroupLayout LoginLayout = new javax.swing.GroupLayout(Login);
         Login.setLayout(LoginLayout);
@@ -118,32 +132,41 @@ public class login extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
+                        .addComponent(BotonIniciar)
+                        .addGap(114, 114, 114))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
                         .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(EtConstrasena, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(EtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EtContrasena, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(32, 32, 32)
                         .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(CampoContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                             .addComponent(CampoCorreo))
                         .addGap(34, 34, 34))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                        .addComponent(BotonLogin)
-                        .addGap(114, 114, 114))))
+                        .addComponent(EtIdioma)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(opcionIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         LoginLayout.setVerticalGroup(
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtEmail)
+                    .addComponent(EtCorreo)
                     .addComponent(CampoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtConstrasena)
+                    .addComponent(EtContrasena)
                     .addComponent(CampoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(BotonLogin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BotonIniciar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(opcionIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EtIdioma))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,7 +177,7 @@ public class login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -214,23 +237,40 @@ public class login extends javax.swing.JFrame {
 		
 	}// Cierre del Método
 	
-    private void BotonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLoginActionPerformed
+    private void BotonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarActionPerformed
         
                         
                obtenerDatos();
                
                  LecturaCorreo ejecutaraccion =new LecturaCorreo();
-                ejecutaraccion.obtenerDatos(usuarioEmisor, claveEmisor);
-                ejecutaraccion.VentanaPrincipal();
-              
+                ejecutaraccion.obtenerDatos(usuarioEmisor, claveEmisor,idioma);
+               
+                ejecutaraccion.traducir(fuente);
                 System.out.println(usuarioEmisor);
-                
+                ejecutaraccion.VentanaPrincipal();
                    System.out.println(sesion);
                
                 
               this.setVisible(false);
 	               
-    }//GEN-LAST:event_BotonLoginActionPerformed
+    }//GEN-LAST:event_BotonIniciarActionPerformed
+
+    public JComboBox<String> getOpcionIdioma() {
+        return opcionIdioma;
+    }
+
+    public void setOpcionIdioma(JComboBox<String> opcionIdioma) {
+        this.opcionIdioma = opcionIdioma;
+    }
+
+    private void opcionIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionIdiomaActionPerformed
+      if (evt.getSource()==opcionIdioma) {
+          idioma=(String)opcionIdioma.getSelectedItem();
+           detectorIdioma(idioma);
+           
+          
+      }
+    }//GEN-LAST:event_opcionIdiomaActionPerformed
      public void ImageAndLabels( ) {
           JFrame frame = new JFrame("image and labels");
           
@@ -238,6 +278,43 @@ public class login extends javax.swing.JFrame {
             add( new JLabel( new ImageIcon("./ico.png ")));
            
         }
+      protected void detectorIdioma(String idioma) {
+           Locale region = null;
+          switch(idioma){
+    case "Español":
+        region=new Locale("es","ES");
+        
+        break;          
+    case "Ingles":
+        region=new Locale("en","US");
+        
+        break;
+    case "Frances":
+        region=new Locale("fr","FR");
+        break;
+        }
+        
+          fuente= ResourceBundle.getBundle("proyectoingsoft/Bundle",region);
+         
+          
+          traducir(fuente);
+          
+         }
+      
+      public void traducir(ResourceBundle fuente){
+      BotonIniciar.setText(fuente.getString("login.BotonIniciar.text"));
+      EtCorreo.setText(fuente.getString("login.EtCorreo.text"));
+      EtContrasena.setText(fuente.getString("login.EtContrasena.text"));
+      this.setTitle(fuente.getString("login.title"));
+      EtIdioma.setText(fuente.getString("login.EtIdioma.text"));
+      
+      
+      
+           
+      }
+      
+      
+     
     /**
      * @param args the command line arguments
      */
@@ -303,14 +380,16 @@ public class login extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonLogin;
+    private javax.swing.JButton BotonIniciar;
     private javax.swing.JPasswordField CampoContrasena;
     private javax.swing.JTextField CampoCorreo;
-    private javax.swing.JLabel EtConstrasena;
-    private javax.swing.JLabel EtEmail;
+    private javax.swing.JLabel EtContrasena;
+    private javax.swing.JLabel EtCorreo;
+    private javax.swing.JLabel EtIdioma;
     private javax.swing.JPanel Login;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame4;
+    private javax.swing.JComboBox<String> opcionIdioma;
     // End of variables declaration//GEN-END:variables
 }

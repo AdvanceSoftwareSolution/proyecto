@@ -7,7 +7,9 @@ package proyectoingsoft;
 
 
 import java.awt.Image;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import javax.mail.Address;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -45,9 +47,9 @@ public class LecturaCorreo extends javax.swing.JFrame {
 	/** usuarioReceptor obtiene y contiene 
 	 *  el correo electronico de usuario receptor.
 	 */
-        
+        ResourceBundle fuente;
         String asuntoBusqueda;
-        
+        String idioma;
          int contadorintegrante1=0;
         int contadorintegrante2=0;
         
@@ -159,11 +161,10 @@ public class LecturaCorreo extends javax.swing.JFrame {
         }
     }
        
-     public void obtenerDatos(String emisor, String contrasena){
+     public void obtenerDatos(String emisor, String contrasena,String idiomaregion){
 		usuarioEmisor=emisor;
                 claveEmisor=contrasena;
-              
-		
+             idioma=idiomaregion;
 	}
     /**
      * This method is called from within the constructor to initialize the form.
@@ -177,35 +178,36 @@ public class LecturaCorreo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         CampoImpresion = new javax.swing.JTextArea();
-        BotonLeer = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        BotonBuscar = new javax.swing.JButton();
+        EtFechaRecepcion = new javax.swing.JLabel();
+        EtRemitente = new javax.swing.JLabel();
         CampoRemitente = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        EtAsunto = new javax.swing.JLabel();
         obtenerGrafico = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Inbox");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("proyectoingsoft/Bundle"); // NOI18N
+        setTitle(bundle.getString("LecturaCorreo.title")); // NOI18N
         setResizable(false);
 
         CampoImpresion.setColumns(20);
         CampoImpresion.setRows(5);
         jScrollPane1.setViewportView(CampoImpresion);
 
-        BotonLeer.setText("Buscar Mensajes");
-        BotonLeer.addActionListener(new java.awt.event.ActionListener() {
+        BotonBuscar.setText(bundle.getString("LecturaCorreo.BotonBuscar.text")); // NOI18N
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonLeerActionPerformed(evt);
+                BotonBuscarActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Fecha de Recepcion del Mensaje");
+        EtFechaRecepcion.setText(bundle.getString("LecturaCorreo.EtFechaRecepcion.text")); // NOI18N
 
-        jLabel2.setText("Remitente");
+        EtRemitente.setText(bundle.getString("LecturaCorreo.EtRemitente.text")); // NOI18N
 
-        jLabel3.setText("Asunto a Buscar");
+        EtAsunto.setText(bundle.getString("LecturaCorreo.EtAsunto.text")); // NOI18N
 
-        obtenerGrafico.setText("Obtener Grafico");
+        obtenerGrafico.setText(bundle.getString("LecturaCorreo.obtenerGrafico.text")); // NOI18N
         obtenerGrafico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 obtenerGraficoActionPerformed(evt);
@@ -222,13 +224,13 @@ public class LecturaCorreo extends javax.swing.JFrame {
                 .addGap(0, 41, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(jLabel1)
+                .addComponent(EtFechaRecepcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(EtRemitente)
                 .addGap(128, 128, 128))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(EtAsunto)
                 .addGap(37, 37, 37)
                 .addComponent(CampoRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
@@ -236,7 +238,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(256, 256, 256)
-                        .addComponent(BotonLeer))
+                        .addComponent(BotonBuscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
                         .addComponent(obtenerGrafico)))
@@ -248,13 +250,13 @@ public class LecturaCorreo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CampoRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(EtAsunto))
                 .addGap(29, 29, 29)
-                .addComponent(BotonLeer)
+                .addComponent(BotonBuscar)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(EtFechaRecepcion)
+                    .addComponent(EtRemitente))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
@@ -278,22 +280,45 @@ public class LecturaCorreo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotonLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLeerActionPerformed
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
         // TODO add your handling code here:
+       
         validarLectura();
         
-    }//GEN-LAST:event_BotonLeerActionPerformed
-
+    }//GEN-LAST:event_BotonBuscarActionPerformed
+ 
+    
+    public void traducir(ResourceBundle fuenteok){
+        fuente=fuenteok;
+      BotonBuscar.setText(fuente.getString("LecturaCorreo.BotonBuscar.text"));
+      EtAsunto.setText(fuente.getString("LecturaCorreo.EtAsunto.text"));
+      obtenerGrafico.setText(fuente.getString("LecturaCorreo.obtenerGrafico.text"));
+      this.setTitle(fuente.getString("LecturaCorreo.title"));
+      EtFechaRecepcion.setText(fuente.getString("LecturaCorreo.EtFechaRecepcion.text"));
+      EtRemitente.setText(fuente.getString("LecturaCorreo.EtRemitente.text"));
+     
+      
+           
+      }
     private void obtenerGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obtenerGraficoActionPerformed
        
          VisualGrafica ejecutaraccion =new VisualGrafica();
                 ejecutaraccion.obtenerDatos(contadorintegrante1,contadorintegrante2);
+               ejecutaraccion.traducir(fuente);
+                System.out.println(usuarioEmisor);
                 ejecutaraccion.VentanaPrincipal();
                  this.setVisible(false);
+                 
+                 
               
    // TODO add your handling code here:
     }//GEN-LAST:event_obtenerGraficoActionPerformed
-
+   
+    
+    /**
+     * @param args the command line arguments
+     */
+    
     public void VentanaPrincipal(){
        
         ImageIcon ImageIcon = new ImageIcon(getClass().getResource("images/ico.png"));
@@ -303,41 +328,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LecturaCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LecturaCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LecturaCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LecturaCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               new login().VentanaPrincipal();
-            }
-        });
-    }
+   
 
     public JTextField getCampoRemitente() {
         return CampoRemitente;
@@ -349,12 +340,12 @@ public class LecturaCorreo extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonLeer;
+    private javax.swing.JButton BotonBuscar;
     private javax.swing.JTextArea CampoImpresion;
     private javax.swing.JTextField CampoRemitente;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel EtAsunto;
+    private javax.swing.JLabel EtFechaRecepcion;
+    private javax.swing.JLabel EtRemitente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton obtenerGrafico;
