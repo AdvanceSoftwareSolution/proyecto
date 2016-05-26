@@ -115,7 +115,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        opcionIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "Ingles", "Frances", " " }));
+        opcionIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Español", "Ingles", "Frances" }));
         opcionIdioma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opcionIdiomaActionPerformed(evt);

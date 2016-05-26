@@ -27,6 +27,23 @@ Graficos  migrafico = new Graficos ();
         int contadorintegrante1=0;
         ResourceBundle fuente;
         int contadorintegrante2=0;
+         int contadorintegrante3=0;
+         
+	/** usuarioEmisor obtiene y contiene 
+	 *  el correo electronico de usuario emisor.
+	 */
+	String usuarioEmisor;
+	
+	/** claveEmisor obtiene y contiene 
+	 *  la clave del correo electronico del usuario emisor.
+	 */
+	String claveEmisor;
+	
+	/** usuarioReceptor obtiene y contiene 
+	 *  el correo electronico de usuario receptor.
+	 */
+        
+        String idioma;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +55,8 @@ Graficos  migrafico = new Graficos ();
 
         areaGrafica = new javax.swing.JPanel();
         BotonGraficar = new javax.swing.JButton();
+        BotonSalir = new javax.swing.JButton();
+        BotonRefrescar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,11 +64,11 @@ Graficos  migrafico = new Graficos ();
         areaGrafica.setLayout(areaGraficaLayout);
         areaGraficaLayout.setHorizontalGroup(
             areaGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
         areaGraficaLayout.setVerticalGroup(
             areaGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
+            .addGap(0, 267, Short.MAX_VALUE)
         );
 
         BotonGraficar.setText("Graficar");
@@ -59,43 +78,71 @@ Graficos  migrafico = new Graficos ();
             }
         });
 
+        BotonSalir.setText("Cerrar Sesion");
+        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirActionPerformed(evt);
+            }
+        });
+
+        BotonRefrescar.setText("Refrescar");
+        BotonRefrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonRefrescarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(areaGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(BotonSalir)))
+                .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
                 .addComponent(BotonGraficar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(areaGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonRefrescar)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonGraficar)
+                    .addComponent(BotonRefrescar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(areaGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(BotonGraficar)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonSalir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- public void obtenerDatos(int contintegrante1,int contintegrante2){
+ public void obtenerDatos(int contintegrante1,int contintegrante2, int contintegrante3){
 		
                 contadorintegrante1=contintegrante1;
                 contadorintegrante2=contintegrante2;
+                contadorintegrante3=contintegrante3;
                
               
 		
 	}
  
-  public void traducir(ResourceBundle fuente){
+  public void traducir(ResourceBundle fuenteok){
+      fuente=fuenteok;
   BotonGraficar.setText(fuente.getString("VisualGrafica.BotonGraficar.text"));
   this.setTitle(fuente.getString("VisualGrafica.title"));
+  BotonSalir.setText(fuente.getString("VisualGrafica.BotonSalir.text"));
   
   }
     private void BotonGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGraficarActionPerformed
@@ -103,9 +150,9 @@ Graficos  migrafico = new Graficos ();
               //tamaño del grafico
         Dimension d = areaGrafica.getSize();//toma el tamaño del contenedor
         //se crean los datos
-        int[] valores = {contadorintegrante1,contadorintegrante2};
-        String[] arg1 = {"Luis Miguel","Hi Defi"};
-        String[] arg2 = {"Mensajes","Mensajes"};
+        int[] valores = {contadorintegrante1,contadorintegrante2,contadorintegrante3};
+        String[] arg1 = {"Integrante 1","Integrante 2","Luis Miguel"};
+        String[] arg2 = {"Mensajes","Mensajes","Mensajes"};
         //titulo, lateral 1, lateral 2
         String[] data = {"Interacciones","INBOX","Mensajes"};
         //se crea el grafico
@@ -122,6 +169,27 @@ Graficos  migrafico = new Graficos ();
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonGraficarActionPerformed
 
+    private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
+        this.setVisible(false);
+        System.exit(0);
+    }//GEN-LAST:event_BotonSalirActionPerformed
+public void obtenerDatos(String emisor, String contrasena,String idiomaregion){
+		usuarioEmisor=emisor;
+                claveEmisor=contrasena;
+             idioma=idiomaregion;
+	}
+    private void BotonRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRefrescarActionPerformed
+      
+       
+       LecturaCorreo ejecutaraccion =new LecturaCorreo();
+                ejecutaraccion.obtenerDatos(usuarioEmisor, claveEmisor,idioma);
+               ejecutaraccion.VentanaPrincipal();
+               ejecutaraccion.traducir(fuente);
+                
+                
+                this.setVisible(false);
+    }//GEN-LAST:event_BotonRefrescarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -137,6 +205,8 @@ Graficos  migrafico = new Graficos ();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonGraficar;
+    private javax.swing.JButton BotonRefrescar;
+    private javax.swing.JButton BotonSalir;
     private javax.swing.JPanel areaGrafica;
     // End of variables declaration//GEN-END:variables
 }

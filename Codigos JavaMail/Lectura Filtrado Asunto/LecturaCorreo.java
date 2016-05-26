@@ -52,7 +52,7 @@ public class LecturaCorreo extends javax.swing.JFrame {
         String idioma;
          int contadorintegrante1=0;
         int contadorintegrante2=0;
-        
+          int contadorintegrante3=0;
     public LecturaCorreo() {
         initComponents();
     }
@@ -100,9 +100,12 @@ public class LecturaCorreo extends javax.swing.JFrame {
         
         Message[] mensajes = inbox.search(new SubjectTerm(asuntoBusqueda));
     
-        String integrante1="luchoguer@gmail.com";
+        String integrante1="inteproyecto1@gmail.com";
        
-        String integrante2="hidefimci@gmail.com";
+        String integrante2="inteproyecto2@gmail.com";
+        
+         String integrante3="luchoguer@gmail.com";
+        
         
   
                 for (int i = 0; i < mensajes.length; i++)
@@ -131,6 +134,13 @@ public class LecturaCorreo extends javax.swing.JFrame {
                  contadorintegrante2++;
                  System.out.println("contador2: "+contadorintegrante2);
                 }
+                    else{
+                        if(integrante3.equals(temporal)){
+                             contadorintegrante3++;
+                            System.out.println("contador3: "+contadorintegrante3);
+                            }
+                    
+                    }
                 
                 }
                 temporal=null;
@@ -143,10 +153,12 @@ public class LecturaCorreo extends javax.swing.JFrame {
              
             }
                 inboxok+="\n\n";
-                inboxok+="Mensajes total del Integrante Luis Miguel:";
+                inboxok+="Mensajes total del Integrante 1:";
                 inboxok+="      \t"+contadorintegrante1+" Mensajes\n";
-                inboxok+="Mensajes total del Integrante Hi Defi:";
+                inboxok+="Mensajes total del Integrante 2:";
                 inboxok+="      \t"+contadorintegrante2+" Mensajes\n";
+                inboxok+="Mensajes total del Integrante Luis Miguel:";
+                inboxok+="      \t"+contadorintegrante3+" Mensajes\n";
                 
                 CampoImpresion.setText(inboxok);
                 
@@ -303,13 +315,13 @@ public class LecturaCorreo extends javax.swing.JFrame {
     private void obtenerGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obtenerGraficoActionPerformed
        
          VisualGrafica ejecutaraccion =new VisualGrafica();
-                ejecutaraccion.obtenerDatos(contadorintegrante1,contadorintegrante2);
+                ejecutaraccion.obtenerDatos(contadorintegrante1,contadorintegrante2,contadorintegrante3);
                ejecutaraccion.traducir(fuente);
                 System.out.println(usuarioEmisor);
                 ejecutaraccion.VentanaPrincipal();
+                 ejecutaraccion.obtenerDatos(usuarioEmisor, claveEmisor,idioma);
+                 
                  this.setVisible(false);
-                 
-                 
               
    // TODO add your handling code here:
     }//GEN-LAST:event_obtenerGraficoActionPerformed
